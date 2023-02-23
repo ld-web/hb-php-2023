@@ -1,0 +1,35 @@
+{
+  "name": "PHP - Apache",
+  "image": "ghcr.io/ld-web/php-apache:latest",
+  "postStartCommand": "service apache2 start",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/var/www/html,type=bind,consistency=cached"
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh"
+      },
+      "extensions": [
+        "eamodio.gitlens",
+        "formulahendry.auto-close-tag",
+        "formulahendry.auto-rename-tag",
+        "adpyke.codesnap",
+        "mrmlnc.vscode-duplicate",
+        "oderwat.indent-rainbow",
+        "PKief.material-icon-theme",
+        "xdebug.php-debug",
+        "neilbrayfield.php-docblocker",
+        "phproberto.vscode-php-getters-setters",
+        "bmewburn.vscode-intelephense-client",
+        "JakeWilson.vscode-placeholder-images",
+        "esbenp.prettier-vscode",
+        "helixquar.randomeverything",
+        "mtxr.sqltools-driver-mysql",
+        "TabNine.tabnine-vscode",
+        "bradlc.vscode-tailwindcss",
+        "narsenico.vscode-progressive-increment"
+      ]
+    }
+  }
+}
