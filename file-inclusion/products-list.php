@@ -2,6 +2,7 @@
 // IMPORT DATA
 require_once 'data/products.php';
 // LAYOUT - HEADER
+$title = "Produits";
 require_once 'layout/header.php';
 ?>
 <!-- CONTENT -->
