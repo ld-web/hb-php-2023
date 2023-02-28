@@ -1,4 +1,10 @@
 <?php
+
+// Optionnel, pas obligé de retenir
+// Active les types stricts dans l'évaluation des scripts
+// Et remontera davantage d'erreurs en cas de mauvais types détectés
+declare(strict_types=1);
+
 const FR_AGE_MAJORITE = 18;
 
 function isMajeur(int $age): bool
