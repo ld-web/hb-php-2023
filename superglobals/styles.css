@@ -1,0 +1,39 @@
+#wrapper{
+    max-width: 800px;
+    margin: auto;
+}
+
+.results{
+display: flex;
+gap: 1.5rem;
+justify-content: space-evenly;
+}
+.result-items{
+border: 1px solid black;
+padding: 2rem 0.7rem;
+width: 250px;
+}
+.result-items .profile-pic img{
+    border-radius: 50%;
+}
+.result-items .profile-pic,
+.result-items h3,
+.result-items h4{
+    text-align: center;
+}
+.result-items h3{
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+.result-items h4{
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-top :0
+}
+
+.hobbies{
+    background-color: bisque;
+    padding: 0.5rem;
+    flex-wrap: wrap;
+    display: inline;
+}
