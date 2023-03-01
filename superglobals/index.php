@@ -12,7 +12,7 @@ require_once 'data/users.php';
 </head>
 
 <body>
-  <h1><?php echo "Bienvenue " . $_GET['pseudo']; ?></h1>
+  <h1><?php echo "Bienvenue " ; ?></h1>
   <h2>Utilisateurs</h2>
   <?php foreach ($users as $user) { ?>
     <div>
