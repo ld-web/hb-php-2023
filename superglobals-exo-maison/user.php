@@ -31,7 +31,7 @@ require_once 'data/users.php';
   <?php }
   };
   ?>
-  <a href="http://localhost:39000/hb-cours-php-2023/superglobals-exo-maison/index.php">retour à la liste</a>
+  <a href="index.php">retour à la liste</a>
   
 </body>
 </html>

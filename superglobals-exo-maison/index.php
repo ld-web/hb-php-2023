@@ -15,7 +15,7 @@ require_once "data/users.php";
   foreach ($users as $user){ ?>
     <div class="user">
       <h2><?php echo $user['name'] . ' ' . $user['firstname'] ;?></h2>
-      <a href="user.php/?id=<?php echo $user['id'] ;?>">voir la carte de <?php echo $user['firstname'] ;?></a>
+      <a href="user.php?id=<?php echo $user['id'] ;?>">voir la carte de <?php echo $user['firstname'] ;?></a>
     </div>
   <?php }; ?>
 </body>
