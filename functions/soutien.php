@@ -16,4 +16,6 @@ $eniemeSentence = "Je suis une énième";
 
 $texts = [$sentence, $autreSentence, $eniemeSentence];
 
-echo textToParagraph(combineTextsWithBrTags(...$texts));
+$textWithBr = combineTextsWithBrTags(...$texts);
+
+echo textToParagraphOrDiv($textWithBr, 'div');

@@ -1,17 +1,23 @@
 <?php
 function sum(int $x, int $y): int
 {
-    $result = $x + $y;
-    return $result;
+  $result = $x + $y;
+  return $result;
 }
 
 // Fonction qui prendra un texte en paramètre
 // et retournera le même texte encadré par des balises p
 // transformToParagraph
 // textToParagraph
-function textToParagraph(string $text): string
+function textToParagraphOrDiv(string $text, string $tagName = 'p'): string
 {
-    return "<p>$text</p>";
+  $allowedTags = ['p', 'div'];
+
+  if (!in_array($tagName, $allowedTags)) {
+    exit('Balise non autorisée. Balises autorisées : ' . implode(',', $allowedTags));
+  }
+
+  return "<$tagName>$text</$tagName>";
 }
 
 // Fonction qui prend des textes
@@ -19,16 +25,16 @@ function textToParagraph(string $text): string
 // séparés par des balises <br />
 function combineTextsWithBrTags(string ...$texts): string
 {
-    // return implode("<br />", $texts);
+  // return implode("<br />", $texts);
 
-    $result = '';
+  $result = '';
 
-    for ($i = 0; $i < count($texts); $i++) {
-        $result .= $texts[$i];
-        if ($i < count($texts) - 1) {
-            $result .= "<br />";
-        }
+  for ($i = 0; $i < count($texts); $i++) {
+    $result .= $texts[$i];
+    if ($i < count($texts) - 1) {
+      $result .= "<br />";
     }
+  }
 
-    return $result;
+  return $result;
 }
