@@ -69,18 +69,16 @@ class User
         return $this->firstname . ' ' . $this->name;
     }
 
-}
-
-
-function hasLegalAge($age): bool
+    // méthode age
+    public function hasLegalAge(): bool
     {
-        $ageUser = $age->getAge();
-        if ($ageUser>=18){
+        if ($this->age>=18){
             return true;
         } else{
             return false;
         }
     }
+}
 
     function Ban($ban): bool{
         
@@ -92,30 +90,38 @@ function hasLegalAge($age): bool
         }
     }  
 
-    $user1= new User('Belmondo', 'Jean', 25);
-    $user1->setBanned(true);
-    $user1->setAge(15);
+    // $user1= new User('Belmondo', 'Jean', 25);
+    // $user1->setBanned(true);
+    // $user1->setAge(15);
 
-    echo $user1->getFullName() . "<br>";
-    echo $user1->getAge() . "<br>";
-    echo ban($user1). "<br>";
-    echo hasLegalAge($user1). "<br>";
+    // echo $user1->getFullName() . "<br>";
+    // echo $user1->getAge() . "<br>";
+    // echo ban($user1). "<br>";
+    // echo $user1->hasLegalAge(). "<br>";
 
-    $user2 = new User('Tommy', 'Serain', 36);
-    echo $user2->getFullName() . "<br>";
-    echo $user2->getAge() . "<br>";
-    echo ban($user2). "<br>";
-    echo hasLegalAge($user2). "<br>";
+    // $user2 = new User('Tommy', 'Serain', 36);
+    // echo $user2->getFullName() . "<br>";
+    // echo $user2->getAge() . "<br>";
+    // echo ban($user2). "<br>";
+    // echo $user2->hasLegalAge(). "<br>";
 
     $users=[
         [
-            new User('Doe', 'John', 25),
+            new User('Alfred', 'John', 25),
         ],
         [
-            new User('Doe', 'Jane', 25),
+            new User('Merope', 'Jane', 15),
         ]
         ];
-var_dump($users);
-    foreach($users as $user){
-        echo $user[0]->getFullName(). "<br>";
-    };
+// var_dump($users);
+foreach($users as $usersArray){
+    foreach($usersArray as $user){
+        echo $user->getFullName();
+        if($user->hasLegalAge()){
+            echo ' est majeur';
+        }else{
+            echo ' est mineur';
+        }
+    }
+    echo "<br>";
+}
