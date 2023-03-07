@@ -15,8 +15,7 @@ class Email
 
   private function isValid(): bool
   {
-    $isEmailValid = filter_var($this->email, FILTER_VALIDATE_EMAIL);
-    return $isEmailValid !== false;
+    return filter_var($this->email, FILTER_VALIDATE_EMAIL) !== false;
   }
 
   public function getEmail(): string

@@ -1,6 +1,7 @@
 <?php
 require_once 'functions.php';
 require_once 'classes/Email.php';
+require_once 'classes/EmailDb.php';
 
 // Aucun email n'a été renseigné
 // empty vérifie à la fois que $_POST['email'] existe
@@ -16,26 +17,12 @@ try {
   redirect('index.php?error=3');
 }
 
-// --- LECTURE ET VÉRIFICATION DE DOUBLON ---
-$emailsFileContent = file_get_contents('emails.txt');
-
-$emails = array_filter(
-  explode(PHP_EOL, $emailsFileContent),
-  fn ($email) => $email !== ''
-);
-
-// Vérification de doublon
-$emailAlreadyExists = in_array($_POST['email'], $emails);
-
-// L'adresse email a été renseignée, mais existe déjà
-if ($emailAlreadyExists) {
+// Je charge ma base de données
+$db = new EmailDb();
+try {
+  $db->add($email);
+} catch (InvalidArgumentException $ex) {
   redirect('index.php?error=2');
 }
 
-// --- ECRITURE ---
-$emailsFile = fopen('emails.txt', 'a');
-$write = fwrite($emailsFile, $_POST['email'] . PHP_EOL);
-if ($write !== false) {
-  echo "Adresse email enregistrée";
-}
-fclose($emailsFile);
+echo "Adresse email enregistrée";
