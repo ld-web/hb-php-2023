@@ -1,5 +1,6 @@
 <?php
 require_once 'functions.php';
+require_once 'classes/Email.php';
 
 // Aucun email n'a été renseigné
 // empty vérifie à la fois que $_POST['email'] existe
@@ -8,12 +9,10 @@ if (empty($_POST['email'])) {
   redirect('index.php?error=1');
 }
 
-$email = $_POST['email'];
-
 // Format de l'email valide
-$emailIsValid = filter_var($email, FILTER_VALIDATE_EMAIL);
-
-if ($emailIsValid === false) {
+try {
+  $email = new Email($_POST['email']);
+} catch (InvalidArgumentException $ex) {
   redirect('index.php?error=3');
 }
 
