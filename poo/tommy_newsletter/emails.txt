@@ -1,0 +1,7 @@
+test@test.com
+retest@test.com
+hello@test.com
+lucas@bob.net
+lucas@test.net
+noa@test.shop
+lucas@lucas.com
