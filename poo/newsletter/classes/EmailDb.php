@@ -3,14 +3,20 @@ class EmailDb
 {
   private array $emails;
   private const EMAILS_DB_PATH = __DIR__ . '/../emails.txt';
+  private SpamChecker $spamChecker;
 
   public function __construct()
   {
     $this->emails = $this->getEmailsFromDb();
+    $this->spamChecker = new SpamChecker();
   }
 
   public function add(Email $email): bool
   {
+    if ($this->spamChecker->isSpam($email)) {
+      throw new DomainException();
+    }
+
     if ($this->contains($email)) {
       throw new InvalidArgumentException();
     }

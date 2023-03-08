@@ -1,4 +1,5 @@
 <?php
+require_once 'classes/NewsletterError.php';
 
 /**
  * Redirects to specified location
@@ -15,14 +16,17 @@ function redirect(string $location): void
 function getErrorMessage(int $code): string
 {
   switch ($code) {
-    case 1:
+    case NewsletterError::EMAIL_REQUIRED:
       return "Merci de renseigner un email";
       break;
-    case 2:
+    case NewsletterError::DUPLICATE_EMAIL:
       return "Cet email est déjà inscrit à la newsletter";
       break;
-    case 3:
+    case NewsletterError::INVALID_FORMAT:
       return "Le format de l'email est invalide";
+      break;
+    case NewsletterError::EMAIL_IS_SPAM:
+      return "Le domaine de cet email est considéré comme un spam";
       break;
     default:
       return "Contactez l'administrateur de l'application";
