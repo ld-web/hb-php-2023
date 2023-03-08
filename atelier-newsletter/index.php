@@ -10,7 +10,7 @@ require_once 'layout/header.php';
 
   <?php if (array_key_exists('error', $_GET)) { ?>
     <div class="alert alert-danger">
-      <?php echo NewsletterError::getErrorMessage(intval($_GET['code'])); ?>
+      <?php echo NewsletterError::getErrorMessage(intval($_GET['error'])); ?>
     </div>
   <?php } ?>
 

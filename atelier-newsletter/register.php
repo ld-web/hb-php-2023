@@ -12,6 +12,16 @@ if ($emailIsValid === false) {
   redirect('index.php?error=' . NewsletterError::INVALID_FORMAT);
 }
 
+// DETECTION DE DOUBLON
+$emails = file('data/emails.txt', FILE_IGNORE_NEW_LINES);
+// Si on avait des \n à la fin des lignes :
+// $emails = array_map(fn ($line) => trim($line, PHP_EOL), $emails);
+$emailAlreadyExists = in_array($email, $emails);
+if ($emailAlreadyExists) {
+  redirect('index.php?error=' . NewsletterError::DUPLICATE_EMAIL);
+}
+
+// ECRITURE
 $emailsFile = fopen('data/emails.txt', 'a');
 $writeEmail = fwrite($emailsFile, $email . PHP_EOL);
 if ($writeEmail === false) {
