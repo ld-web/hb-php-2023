@@ -1,4 +1,6 @@
 <?php
+require_once 'SpamChecker.php';
+
 class EmailDb
 {
   private array $emails;

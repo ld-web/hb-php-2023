@@ -13,6 +13,12 @@ class Email
     }
   }
 
+  public function getDomain(): string
+  {
+    $emailParts = explode('@', $this->email);
+    return $emailParts[1];
+  }
+
   private function isValid(): bool
   {
     return filter_var($this->email, FILTER_VALIDATE_EMAIL) !== false;
