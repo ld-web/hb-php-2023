@@ -10,6 +10,6 @@
 
 ## [Superglobales](superglobals/)
 
-## [Formulaire](forms/)
+## [Formulaires](forms/)
 
 ## [Programmation orientée objet](poo/)
