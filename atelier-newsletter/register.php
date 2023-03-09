@@ -3,6 +3,9 @@ require_once 'functions/utils.php';
 require_once 'classes/NewsletterError.php';
 require_once 'classes/Email.php';
 require_once 'classes/EmailsStore.php';
+require_once 'classes/Exception/DuplicateEmailException.php';
+require_once 'classes/Exception/EmailInvalidFormatException.php';
+require_once 'classes/Exception/FileWriteException.php';
 
 if (empty($_POST['email'])) {
   redirect('index.php?error=' . NewsletterError::EMAIL_REQUIRED);
@@ -10,17 +13,10 @@ if (empty($_POST['email'])) {
 
 try {
   $email = new Email($_POST['email']);
-} catch (InvalidArgumentException $e) {
-  redirect('index.php?error=' . NewsletterError::INVALID_FORMAT);
-}
-
-$store = new EmailsStore();
-try {
+  $store = new EmailsStore();
   $store->add($email);
-} catch (InvalidArgumentException $e) {
-  redirect('index.php?error=' . NewsletterError::DUPLICATE_EMAIL);
-} catch (RuntimeException $e) {
-  redirect('index.php?error=' . NewsletterError::FILE_WRITE_ERROR);
+} catch (NewsletterException $e) {
+  redirect('index.php?error=' . $e->getCode());
 }
 
 require_once 'layout/header.php';

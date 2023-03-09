@@ -1,15 +1,17 @@
 <?php
+require_once __DIR__ . '/Exception/EmailInvalidFormatException.php';
+
 class Email
 {
   /**
    * @param string $email
-   * @throws InvalidArgumentException if email has incorrect format
+   * @throws EmailInvalidFormatException if email has incorrect format
    */
   public function __construct(
     private string $email
   ) {
     if (!$this->isValid()) {
-      throw new InvalidArgumentException();
+      throw new EmailInvalidFormatException();
     }
   }
 

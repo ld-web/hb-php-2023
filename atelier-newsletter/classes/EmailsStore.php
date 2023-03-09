@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/Email.php';
+require_once __DIR__ . '/Exception/DuplicateEmailException.php';
+require_once __DIR__ . '/Exception/FileWriteException.php';
 
 class EmailsStore
 {
@@ -18,19 +20,19 @@ class EmailsStore
   /**
    * @param Email $email
    * @return void
-   * @throws InvalidArgumentException if email has duplicate
-   * @throws RuntimeException if unable to write to file
+   * @throws DuplicateEmailException if email has duplicate
+   * @throws FileWriteException if unable to write to file
    */
   public function add(Email $email)
   {
     if ($this->contains($email)) {
-      throw new InvalidArgumentException();
+      throw new DuplicateEmailException();
     }
 
     $emailsFile = fopen(self::EMAILS_FILE_PATH, 'a');
     $writeEmail = fwrite($emailsFile, $email->getEmail() . PHP_EOL);
     if ($writeEmail === false) {
-      throw new RuntimeException();
+      throw new FileWriteException();
     }
   }
 
