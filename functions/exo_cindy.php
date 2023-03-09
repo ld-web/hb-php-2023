@@ -94,7 +94,30 @@ function sortByPrice(array $products): array
     $result[] = $products[$key];
   }
 
-  return $prices;
+  return $result;
 }
 
-var_dump(sortByPrice($products));
+$sortedProducts = sortByPrice($products);
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prix triés</title>
+</head>
+
+<body>
+  <h1>Tous nos prix</h1>
+
+  <?php foreach ($sortedProducts as $product) { ?>
+    <div>
+      <h2><?php echo $product->getName(); ?></h2>
+      <h3><?php echo $product->getPriceTTC(); ?></h3>
+    </div>
+  <?php } ?>
+</body>
+
+</html>
